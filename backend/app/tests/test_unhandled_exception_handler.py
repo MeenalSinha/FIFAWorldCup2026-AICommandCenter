@@ -7,6 +7,11 @@ from app.core.errors import unhandled_exception_handler
 
 
 def _fake_request(path: str = "/api/v1/whatever") -> Request:
+    """
+
+    :param path: str:  (Default value = "/api/v1/whatever")
+
+    """
     scope = {"type": "http", "method": "GET", "path": path, "headers": []}
     return Request(scope)
 

@@ -32,6 +32,7 @@ ROLE_HIERARCHY = {
 
 
 class TokenData(BaseModel):
+    """ """
     sub: str
     role: str = "fan"
 
@@ -39,6 +40,13 @@ class TokenData(BaseModel):
 def create_access_token(
     subject: str, role: str = "fan", expires_minutes: int | None = None
 ) -> str:
+    """
+
+    :param subject: str: 
+    :param role: str:  (Default value = "fan")
+    :param expires_minutes: int | None:  (Default value = None)
+
+    """
     expire = datetime.now(UTC) + timedelta(
         minutes=expires_minutes or settings.access_token_expire_minutes
     )
@@ -49,6 +57,11 @@ def create_access_token(
 
 
 def decode_access_token(token: str) -> TokenData:
+    """
+
+    :param token: str: 
+
+    """
     try:
         payload = jwt.decode(
             token, settings.jwt_secret_key, algorithms=[settings.jwt_algorithm]
@@ -76,9 +89,18 @@ async def get_current_user(token: str | None = Depends(oauth2_scheme)) -> TokenD
 
 
 def require_role(minimum_role: str):
-    """FastAPI dependency factory enforcing a minimum RBAC tier."""
+    """FastAPI dependency factory enforcing a minimum RBAC tier.
+
+    :param minimum_role: str: 
+
+    """
 
     def _checker(user: TokenData = Depends(get_current_user)) -> TokenData:
+        """
+
+        :param user: TokenData:  (Default value = Depends(get_current_user))
+
+        """
         if ROLE_HIERARCHY.get(user.role, 0) < ROLE_HIERARCHY.get(minimum_role, 99):
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN, detail="Insufficient role"
@@ -99,11 +121,15 @@ _INJECTION_MARKERS = (
 
 def sanitize_prompt_input(text: str, max_len: int = 2000) -> str:
     """Defensive filter applied to any user text before it reaches an LLM.
-
+    
     This is a first line of defense (documented in docs/SECURITY.md); the
     real boundary is that Gemini calls never receive raw user text as an
     instruction -- only as clearly delimited data -- see
     app/services/gemini_service.py.
+
+    :param text: str: 
+    :param max_len: int:  (Default value = 2000)
+
     """
     if not text:
         return ""

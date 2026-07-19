@@ -10,6 +10,7 @@ from app.data import seed_data
 
 
 class StadiumOperationsAgent(BaseAgent):
+    """ """
     name = "stadium_operations_agent"
     system_instruction = (
         "You are the Stadium Operations Agent. Analyze crowd density, gate "

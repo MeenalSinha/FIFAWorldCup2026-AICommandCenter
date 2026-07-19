@@ -16,7 +16,13 @@ from typing import Any
 
 
 class JsonFormatter(logging.Formatter):
+    """ """
     def format(self, record: logging.LogRecord) -> str:
+        """
+
+        :param record: logging.LogRecord: 
+
+        """
         payload: dict[str, Any] = {
             "timestamp": time.strftime(
                 "%Y-%m-%dT%H:%M:%SZ", time.gmtime(record.created)
@@ -31,6 +37,7 @@ class JsonFormatter(logging.Formatter):
 
 
 def configure_logging() -> None:
+    """ """
     handler = logging.StreamHandler(sys.stdout)
     handler.setFormatter(JsonFormatter())
     root = logging.getLogger()
@@ -41,7 +48,15 @@ def configure_logging() -> None:
 def audit_log(
     actor: str, action: str, resource: str, outcome: str = "success", **extra: Any
 ) -> None:
-    """Append-only audit trail entry (Cloud Logging sink -> BigQuery in prod)."""
+    """Append-only audit trail entry (Cloud Logging sink -> BigQuery in prod).
+
+    :param actor: str: 
+    :param action: str: 
+    :param resource: str: 
+    :param outcome: str:  (Default value = "success")
+    :param **extra: Any: 
+
+    """
     logger = logging.getLogger("audit")
     record = logging.LogRecord(
         name="audit",

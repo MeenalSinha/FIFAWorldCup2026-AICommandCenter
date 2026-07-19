@@ -10,14 +10,19 @@ export default function AIMatchCompanion() {
       <CardHeader
         title="AI Match Companion"
         action={
-          <button aria-label="More options" className="text-[var(--text-secondary)]">
+          <button
+            aria-label="More options"
+            className="text-[var(--text-secondary)]"
+          >
             <MoreVertical size={16} />
           </button>
         }
       />
       <div className="px-5 pb-5 flex flex-col gap-4 flex-1">
         <div>
-          <p className="font-display text-lg font-semibold">Welcome back, Riya</p>
+          <p className="font-display text-lg font-semibold">
+            Welcome back, Riya
+          </p>
           <p className="text-sm text-[var(--text-secondary)] mt-1">
             Here is what is happening at your stadium today.
           </p>
@@ -37,7 +42,9 @@ export default function AIMatchCompanion() {
             <dd className="font-medium mt-0.5">82,500</dd>
           </div>
           <div>
-            <dt className="text-xs text-[var(--text-secondary)]">Security Level</dt>
+            <dt className="text-xs text-[var(--text-secondary)]">
+              Security Level
+            </dt>
             <dd className="font-medium mt-0.5 flex items-center gap-1.5">
               <span className="status-dot bg-amber-500" /> Medium
             </dd>

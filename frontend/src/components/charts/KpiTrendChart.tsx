@@ -1,6 +1,14 @@
 "use client";
 
-import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis, CartesianGrid } from "recharts";
+import {
+  Line,
+  LineChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+} from "recharts";
 import { Card, CardHeader } from "@/components/ui/Card";
 
 const TREND_DATA = [
@@ -18,15 +26,32 @@ export default function KpiTrendChart() {
       <CardHeader title="Entry Wait Time Trend" />
       <div className="h-56 px-3 pb-5">
         <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={TREND_DATA} margin={{ top: 8, right: 16, left: -12, bottom: 0 }}>
+          <LineChart
+            data={TREND_DATA}
+            margin={{ top: 8, right: 16, left: -12, bottom: 0 }}
+          >
             <CartesianGrid strokeDasharray="3 3" stroke="var(--border-soft)" />
-            <XAxis dataKey="time" fontSize={12} stroke="var(--text-secondary)" />
+            <XAxis
+              dataKey="time"
+              fontSize={12}
+              stroke="var(--text-secondary)"
+            />
             <YAxis fontSize={12} stroke="var(--text-secondary)" />
             <Tooltip
-              contentStyle={{ borderRadius: 12, border: "1px solid var(--border-soft)", fontSize: 12 }}
+              contentStyle={{
+                borderRadius: 12,
+                border: "1px solid var(--border-soft)",
+                fontSize: 12,
+              }}
               formatter={(value) => [`${value} min`, "Avg entry wait"]}
             />
-            <Line type="monotone" dataKey="waitMinutes" stroke="#2f6fed" strokeWidth={2} dot={false} />
+            <Line
+              type="monotone"
+              dataKey="waitMinutes"
+              stroke="#2f6fed"
+              strokeWidth={2}
+              dot={false}
+            />
           </LineChart>
         </ResponsiveContainer>
       </div>

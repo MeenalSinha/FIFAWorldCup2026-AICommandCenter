@@ -4,6 +4,7 @@ from app.main import app
 
 
 def test_websocket_live_feed_connects_and_streams_updates():
+    """ """
     client = TestClient(app)
     with client.websocket_connect("/ws/live") as websocket:
         # The background simulated feed broadcasts every 5s; rather than
@@ -15,6 +16,7 @@ def test_websocket_live_feed_connects_and_streams_updates():
 
 
 def test_root_and_docs_are_reachable():
+    """ """
     client = TestClient(app)
     root = client.get("/")
     assert root.status_code == 200

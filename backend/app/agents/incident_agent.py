@@ -14,6 +14,7 @@ settings = get_settings()
 
 
 class IncidentResponseAgent(BaseAgent):
+    """ """
     name = "incident_response_agent"
     system_instruction = (
         "You are the Incident Response AI. Given an incident type and "

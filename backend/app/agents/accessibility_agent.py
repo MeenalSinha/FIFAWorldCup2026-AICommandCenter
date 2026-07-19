@@ -11,6 +11,7 @@ from app.services import maps_service, speech_service
 
 
 class AccessibilityAgent(BaseAgent):
+    """ """
     name = "accessibility_agent"
     system_instruction = (
         "You are the Accessibility AI. Provide clear, dignified assistance "

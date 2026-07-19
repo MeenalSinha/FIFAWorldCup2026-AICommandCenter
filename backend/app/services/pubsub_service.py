@@ -12,6 +12,13 @@ _subscribers: dict[str, list[Callable[[dict], Awaitable[None]]]] = {}
 
 
 def subscribe(topic: str, handler: Callable[[dict], Awaitable[None]]) -> None:
+    """
+
+    :param topic: str: 
+    :param handler: Callable[[dict]: 
+    :param Awaitable[None]]: 
+
+    """
     _subscribers.setdefault(topic, []).append(handler)
 
 

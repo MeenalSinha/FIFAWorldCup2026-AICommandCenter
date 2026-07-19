@@ -4,6 +4,7 @@ from app.ws.manager import ConnectionManager
 
 
 class _FakeWebSocket:
+    """ """
     def __init__(self, fail_on_send: bool = False):
         self.accepted = False
         self.sent = []

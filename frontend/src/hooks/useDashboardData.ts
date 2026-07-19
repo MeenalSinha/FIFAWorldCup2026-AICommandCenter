@@ -2,7 +2,11 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/api";
-import { DEFAULT_STATE, DEFAULT_SUSTAINABILITY, DEFAULT_TRANSPORTATION } from "@/lib/defaults";
+import {
+  DEFAULT_STATE,
+  DEFAULT_SUSTAINABILITY,
+  DEFAULT_TRANSPORTATION,
+} from "@/lib/defaults";
 import { useLiveFeed } from "@/hooks/useLiveFeed";
 
 export function useDashboardData() {
@@ -27,7 +31,10 @@ export function useDashboardData() {
   const live = useLiveFeed();
 
   const gates = live?.gates ?? stateQuery.data.gates;
-  const isBackendReachable = !stateQuery.isError && !sustainabilityQuery.isError && !transportationQuery.isError;
+  const isBackendReachable =
+    !stateQuery.isError &&
+    !sustainabilityQuery.isError &&
+    !transportationQuery.isError;
 
   return {
     stadium: stateQuery.data.stadium,

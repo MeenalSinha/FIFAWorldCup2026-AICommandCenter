@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { DEFAULT_STATE, DEFAULT_SUSTAINABILITY, DEFAULT_TRANSPORTATION } from "@/lib/defaults";
+import {
+  DEFAULT_STATE,
+  DEFAULT_SUSTAINABILITY,
+  DEFAULT_TRANSPORTATION,
+} from "@/lib/defaults";
 
 describe("fallback dashboard defaults", () => {
   it("provides a gate entry for every density level referenced in the UI", () => {
@@ -10,11 +14,15 @@ describe("fallback dashboard defaults", () => {
   });
 
   it("keeps sustainability metrics in sync between digital twin state and dashboard defaults", () => {
-    expect(DEFAULT_SUSTAINABILITY.metrics).toEqual(DEFAULT_STATE.sustainability);
+    expect(DEFAULT_SUSTAINABILITY.metrics).toEqual(
+      DEFAULT_STATE.sustainability,
+    );
   });
 
   it("keeps transportation overview in sync with digital twin state", () => {
-    expect(DEFAULT_TRANSPORTATION.overview).toEqual(DEFAULT_STATE.transportation);
+    expect(DEFAULT_TRANSPORTATION.overview).toEqual(
+      DEFAULT_STATE.transportation,
+    );
   });
 
   it("gives every insight a non-negative ETA", () => {

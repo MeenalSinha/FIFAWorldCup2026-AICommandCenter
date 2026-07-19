@@ -57,6 +57,7 @@ _client = None
 
 
 def _get_client():
+    """ """
     global _client
     if _client is not None:
         return _client
@@ -73,14 +74,24 @@ def _get_client():
 
 def _deterministic_variant(seed: str, options: list[str]) -> str:
     """Picks a stable pseudo-random option so demo responses feel alive
-    but are reproducible for automated tests / judge re-runs."""
+    but are reproducible for automated tests / judge re-runs.
+
+    :param seed: str: 
+    :param options: list[str]: 
+
+    """
     idx = int(hashlib.sha256(seed.encode()).hexdigest(), 16) % len(options)
     return options[idx]
 
 
 def _call_gemini_sync(client, full_prompt: str) -> str:
     """The actual blocking SDK call, isolated into its own function so it
-    can be run off the event loop via asyncio.to_thread."""
+    can be run off the event loop via asyncio.to_thread.
+
+    :param client: 
+    :param full_prompt: str: 
+
+    """
     response = client.generate_content(
         full_prompt,
         safety_settings=SAFETY_SETTINGS,
@@ -153,10 +164,15 @@ async def generate(
 
 def _demo_fallback(prompt: str, system_instruction: str, context: dict) -> str:
     """Deterministic canned reasoning used in demo mode / offline judging.
-
+    
     This is intentionally template-shaped rather than a single hardcoded
     string per call site, so the AI Assistant, incident copilot, etc.
     all read as generated language rather than static text.
+
+    :param prompt: str: 
+    :param system_instruction: str: 
+    :param context: dict: 
+
     """
     tone = _deterministic_variant(
         prompt or "seed", ["measured", "urgent", "reassuring"]

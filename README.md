@@ -1,5 +1,8 @@
 # FIFA World Cup 2026 - AI Command Center
 
+**Problem Statement:**
+Build a GenAI-enabled solution that enhances stadium operations and the overall tournament experience for fans, organizers, volunteers, or venue staff. The solution must leverage Generative AI to improve navigation, crowd management, accessibility, transportation, sustainability, multilingual assistance, operational intelligence, or real-time decision support during the FIFA World Cup 2026.
+
 **Problem Statement Alignment:**
 This GenAI-enabled solution is specifically built to enhance stadium operations and the overall tournament experience for fans, organizers, volunteers, and venue staff during the FIFA World Cup 2026. 
 It leverages Generative AI to improve:

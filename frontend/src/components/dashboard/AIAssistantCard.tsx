@@ -5,12 +5,17 @@ import { Sparkles, Send, MoreVertical } from "lucide-react";
 import { Card, CardHeader } from "@/components/ui/Card";
 import { api } from "@/lib/api";
 
-const SUGGESTIONS = ["Crowd Prediction", "Incident Report", "SOP Generator", "Translation"];
+const SUGGESTIONS = [
+  "Crowd Prediction",
+  "Incident Report",
+  "SOP Generator",
+  "Translation",
+];
 
 export default function AIAssistantCard() {
-  const [messages, setMessages] = useState<{ role: "assistant" | "user"; text: string }[]>([
-    { role: "assistant", text: "How can I help you today?" },
-  ]);
+  const [messages, setMessages] = useState<
+    { role: "assistant" | "user"; text: string }[]
+  >([{ role: "assistant", text: "How can I help you today?" }]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -21,11 +26,17 @@ export default function AIAssistantCard() {
     setLoading(true);
     try {
       const result = await api.askFanAgent(text);
-      setMessages((prev) => [...prev, { role: "assistant", text: result.answer }]);
+      setMessages((prev) => [
+        ...prev,
+        { role: "assistant", text: result.answer },
+      ]);
     } catch {
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", text: "I could not reach the AI service right now. Please try again shortly." },
+        {
+          role: "assistant",
+          text: "I could not reach the AI service right now. Please try again shortly.",
+        },
       ]);
     } finally {
       setLoading(false);
@@ -37,7 +48,10 @@ export default function AIAssistantCard() {
       <CardHeader
         title="AI Assistant"
         action={
-          <button aria-label="More options" className="text-[var(--text-secondary)]">
+          <button
+            aria-label="More options"
+            className="text-[var(--text-secondary)]"
+          >
             <MoreVertical size={16} />
           </button>
         }
@@ -55,14 +69,20 @@ export default function AIAssistantCard() {
             )}
             <p
               className={`rounded-xl px-3 py-2 max-w-[85%] ${
-                message.role === "user" ? "bg-blue-600 text-white" : "bg-slate-100 dark:bg-white/5"
+                message.role === "user"
+                  ? "bg-blue-600 text-white"
+                  : "bg-slate-100 dark:bg-white/5"
               }`}
             >
               {message.text}
             </p>
           </div>
         ))}
-        {loading && <p className="text-xs text-[var(--text-secondary)] pl-9">Thinking...</p>}
+        {loading && (
+          <p className="text-xs text-[var(--text-secondary)] pl-9">
+            Thinking...
+          </p>
+        )}
       </div>
 
       <div className="flex flex-wrap gap-2 px-5 pb-3">

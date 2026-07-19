@@ -15,13 +15,15 @@ from app.services import gemini_service
 
 class BaseAgent:
     """Base class for every agentic module.
-
+    
     Concrete agents expose one or more domain-specific public methods
     (e.g. `reason()`, `get_procedure()`, `daily_report()`) that call
     `self.think()` to combine live operational data with a Gemini
     reasoning step. There is deliberately no single required method
     name -- each agent's public surface reflects the actions it can
     actually take, documented per-agent and in docs/AI_DESIGN.md.
+
+
     """
 
     name: str = "base_agent"

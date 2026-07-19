@@ -13,11 +13,21 @@ import ConnectionStatusBanner from "@/components/dashboard/ConnectionStatusBanne
 import { useDashboardData } from "@/hooks/useDashboardData";
 
 export default function OverviewPage() {
-  const { gates, insights, operations, sustainability, transportation, isBackendReachable } = useDashboardData();
+  const {
+    gates,
+    insights,
+    operations,
+    sustainability,
+    transportation,
+    isBackendReachable,
+  } = useDashboardData();
 
   return (
     <>
-      <Topbar title="Stadium Command Center" subtitle="Real-time AI-powered operations and insights" />
+      <Topbar
+        title="Stadium Command Center"
+        subtitle="Real-time AI-powered operations and insights"
+      />
       <ConnectionStatusBanner isBackendReachable={isBackendReachable} />
 
       <div className="px-8 pb-10 space-y-6">

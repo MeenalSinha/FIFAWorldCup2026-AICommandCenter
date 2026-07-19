@@ -6,32 +6,52 @@ import Topbar from "@/components/layout/Topbar";
 import { Card, CardHeader } from "@/components/ui/Card";
 import { api } from "@/lib/api";
 
-const KpiTrendChart = dynamic(() => import("@/components/charts/KpiTrendChart"), {
-  ssr: false,
-  loading: () => (
-    <div className="app-card h-72 animate-pulse" aria-hidden="true" />
-  ),
-});
+const KpiTrendChart = dynamic(
+  () => import("@/components/charts/KpiTrendChart"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="app-card h-72 animate-pulse" aria-hidden="true" />
+    ),
+  },
+);
 
 const FALLBACK = {
-  kpis: { avg_entry_wait_minutes: 6.2, avg_concession_wait_minutes: 4.8, incidents_open: 3, incidents_resolved_today: 11, volunteer_utilization_pct: 74 },
+  kpis: {
+    avg_entry_wait_minutes: 6.2,
+    avg_concession_wait_minutes: 4.8,
+    incidents_open: 3,
+    incidents_resolved_today: 11,
+    volunteer_utilization_pct: 74,
+  },
   summary: {
-    headline: "Operations nominal with one active congestion hotspot at Gate C.",
+    headline:
+      "Operations nominal with one active congestion hotspot at Gate C.",
     highlights: [
       "Entry flow at 12 open gates remains within target wait times except Gate C.",
       "Sustainability green score improved 3 points versus the previous match day.",
     ],
-    risks: ["Gate C is trending toward unsafe density within 18 minutes without intervention."],
+    risks: [
+      "Gate C is trending toward unsafe density within 18 minutes without intervention.",
+    ],
   },
-  narrative: "Overall operations are steady; Gate C requires proactive crowd management before kickoff.",
+  narrative:
+    "Overall operations are steady; Gate C requires proactive crowd management before kickoff.",
 };
 
 export default function ReportsPage() {
-  const { data } = useQuery({ queryKey: ["daily-report"], queryFn: api.dailyReport, initialData: FALLBACK });
+  const { data } = useQuery({
+    queryKey: ["daily-report"],
+    queryFn: api.dailyReport,
+    initialData: FALLBACK,
+  });
 
   return (
     <>
-      <Topbar title="Reports" subtitle="Executive summaries, risk forecasts and the AI operations timeline" />
+      <Topbar
+        title="Reports"
+        subtitle="Executive summaries, risk forecasts and the AI operations timeline"
+      />
       <div className="px-8 pb-10 grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
         <KpiTrendChart />
         <Card>

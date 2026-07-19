@@ -13,6 +13,7 @@ from fastapi import WebSocket
 
 
 class ConnectionManager:
+    """ """
     def __init__(self) -> None:
         self._connections: set[WebSocket] = set()
         self._lock = asyncio.Lock()

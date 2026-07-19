@@ -26,6 +26,13 @@ HTTP_422 = 422
 
 
 def _error_body(code: str, message: str, request_id: str) -> dict:
+    """
+
+    :param code: str: 
+    :param message: str: 
+    :param request_id: str: 
+
+    """
     return {"error": {"code": code, "message": message, "request_id": request_id}}
 
 
@@ -77,6 +84,11 @@ async def unhandled_exception_handler(request: Request, exc: Exception) -> JSONR
 
 
 def register_exception_handlers(app: FastAPI) -> None:
+    """
+
+    :param app: FastAPI: 
+
+    """
     app.add_exception_handler(RequestValidationError, validation_exception_handler)
     app.add_exception_handler(StarletteHTTPException, http_exception_handler)
     app.add_exception_handler(Exception, unhandled_exception_handler)

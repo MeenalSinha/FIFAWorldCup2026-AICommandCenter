@@ -11,6 +11,7 @@ from app.data import seed_data
 
 
 class OperationsIntelligenceAgent(BaseAgent):
+    """ """
     name = "operations_intelligence_agent"
     system_instruction = (
         "You are the Operations Intelligence agent generating an executive "

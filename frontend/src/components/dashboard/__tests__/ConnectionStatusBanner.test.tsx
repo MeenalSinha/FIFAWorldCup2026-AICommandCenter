@@ -4,7 +4,9 @@ import ConnectionStatusBanner from "@/components/dashboard/ConnectionStatusBanne
 
 describe("ConnectionStatusBanner", () => {
   it("renders nothing when the backend is reachable", () => {
-    const { container } = render(<ConnectionStatusBanner isBackendReachable={true} />);
+    const { container } = render(
+      <ConnectionStatusBanner isBackendReachable={true} />,
+    );
     expect(container).toBeEmptyDOMElement();
   });
 

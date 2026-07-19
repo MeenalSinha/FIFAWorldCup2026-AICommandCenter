@@ -8,7 +8,10 @@ export default function TransportationPage() {
   const { transportation } = useDashboardData();
   return (
     <>
-      <Topbar title="Transportation" subtitle="Transit, ride share, parking and pedestrian flow predictions" />
+      <Topbar
+        title="Transportation"
+        subtitle="Transit, ride share, parking and pedestrian flow predictions"
+      />
       <div className="px-8 pb-10">
         <TransportationOverview overview={transportation} />
       </div>

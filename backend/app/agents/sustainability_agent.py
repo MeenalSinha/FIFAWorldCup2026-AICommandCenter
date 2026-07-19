@@ -10,6 +10,7 @@ from app.data import seed_data
 
 
 class SustainabilityAgent(BaseAgent):
+    """ """
     name = "sustainability_agent"
     system_instruction = (
         "You are the Sustainability AI. Given stadium sustainability metrics, "

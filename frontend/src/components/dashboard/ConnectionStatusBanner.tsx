@@ -2,7 +2,11 @@
 
 import { WifiOff } from "lucide-react";
 
-export default function ConnectionStatusBanner({ isBackendReachable }: { isBackendReachable: boolean }) {
+export default function ConnectionStatusBanner({
+  isBackendReachable,
+}: {
+  isBackendReachable: boolean;
+}) {
   if (isBackendReachable) return null;
 
   return (

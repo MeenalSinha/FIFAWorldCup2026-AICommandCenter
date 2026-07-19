@@ -8,7 +8,10 @@ export default function OperationsPage() {
   const { operations } = useDashboardData();
   return (
     <>
-      <Topbar title="Operations" subtitle="Gates, restrooms, concessions, medical and security at a glance" />
+      <Topbar
+        title="Operations"
+        subtitle="Gates, restrooms, concessions, medical and security at a glance"
+      />
       <div className="px-8 pb-10 max-w-3xl">
         <OperationsOverview overview={operations} />
       </div>

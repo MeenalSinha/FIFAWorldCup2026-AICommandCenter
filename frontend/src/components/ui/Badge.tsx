@@ -11,7 +11,7 @@ export function DensityBadge({ level }: { level: "low" | "medium" | "high" }) {
     <span
       className={clsx(
         "inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-medium capitalize",
-        DENSITY_STYLES[level]
+        DENSITY_STYLES[level],
       )}
     >
       <span

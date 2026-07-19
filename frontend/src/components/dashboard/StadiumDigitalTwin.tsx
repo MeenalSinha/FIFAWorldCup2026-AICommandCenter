@@ -10,7 +10,10 @@ const DENSITY_COLOR: Record<Gate["density"], string> = {
   high: "#e5484d",
 };
 
-const GATE_POSITIONS: Record<string, { x: number; y: number; labelDx: number; labelDy: number }> = {
+const GATE_POSITIONS: Record<
+  string,
+  { x: number; y: number; labelDx: number; labelDy: number }
+> = {
   "gate-a": { x: 300, y: 40, labelDx: 0, labelDy: -22 },
   "gate-b": { x: 90, y: 120, labelDx: -10, labelDy: -22 },
   "gate-c": { x: 510, y: 160, labelDx: 10, labelDy: -22 },
@@ -28,7 +31,10 @@ export default function StadiumDigitalTwin({ gates }: { gates: Gate[] }) {
             <span className="flex items-center gap-1.5 text-xs font-medium text-emerald-600">
               <span className="status-dot bg-emerald-500 animate-pulse" /> Live
             </span>
-            <button aria-label="More options" className="text-[var(--text-secondary)]">
+            <button
+              aria-label="More options"
+              className="text-[var(--text-secondary)]"
+            >
               <MoreVertical size={16} />
             </button>
           </div>
@@ -36,20 +42,57 @@ export default function StadiumDigitalTwin({ gates }: { gates: Gate[] }) {
       />
 
       <div className="relative mx-5 mb-4 h-72 rounded-xl bg-slate-100 dark:bg-slate-800/60 overflow-hidden">
-        <svg viewBox="0 0 600 300" className="h-full w-full" role="img" aria-label="Stadium digital twin map">
+        <svg
+          viewBox="0 0 600 300"
+          className="h-full w-full"
+          role="img"
+          aria-label="Stadium digital twin map"
+        >
           <ellipse cx="300" cy="150" rx="280" ry="140" fill="#dbe3ef" />
           <ellipse cx="300" cy="150" rx="220" ry="105" fill="#c3cfe2" />
           <ellipse cx="300" cy="150" rx="150" ry="70" fill="#2f8f4e" />
-          <rect x="270" y="105" width="60" height="90" fill="none" stroke="#ffffff" strokeWidth="1.5" opacity="0.7" />
-          <line x1="300" y1="105" x2="300" y2="195" stroke="#ffffff" strokeWidth="1.5" opacity="0.7" />
-          <circle cx="300" cy="150" r="18" fill="none" stroke="#ffffff" strokeWidth="1.5" opacity="0.7" />
+          <rect
+            x="270"
+            y="105"
+            width="60"
+            height="90"
+            fill="none"
+            stroke="#ffffff"
+            strokeWidth="1.5"
+            opacity="0.7"
+          />
+          <line
+            x1="300"
+            y1="105"
+            x2="300"
+            y2="195"
+            stroke="#ffffff"
+            strokeWidth="1.5"
+            opacity="0.7"
+          />
+          <circle
+            cx="300"
+            cy="150"
+            r="18"
+            fill="none"
+            stroke="#ffffff"
+            strokeWidth="1.5"
+            opacity="0.7"
+          />
 
           {gates.map((gate) => {
             const pos = GATE_POSITIONS[gate.id];
             if (!pos) return null;
             return (
               <g key={gate.id}>
-                <circle cx={pos.x} cy={pos.y} r="10" fill={DENSITY_COLOR[gate.density]} stroke="white" strokeWidth="2" />
+                <circle
+                  cx={pos.x}
+                  cy={pos.y}
+                  r="10"
+                  fill={DENSITY_COLOR[gate.density]}
+                  stroke="white"
+                  strokeWidth="2"
+                />
                 <text
                   x={pos.x + pos.labelDx}
                   y={pos.y + pos.labelDy}
@@ -76,13 +119,22 @@ export default function StadiumDigitalTwin({ gates }: { gates: Gate[] }) {
         </svg>
 
         <div className="absolute right-3 top-3 flex flex-col gap-1.5 rounded-lg bg-white/90 p-1 shadow-card">
-          <button aria-label="Zoom in" className="rounded p-1.5 hover:bg-slate-100">
+          <button
+            aria-label="Zoom in"
+            className="rounded p-1.5 hover:bg-slate-100"
+          >
             <Plus size={14} />
           </button>
-          <button aria-label="Zoom out" className="rounded p-1.5 hover:bg-slate-100">
+          <button
+            aria-label="Zoom out"
+            className="rounded p-1.5 hover:bg-slate-100"
+          >
             <Minus size={14} />
           </button>
-          <button aria-label="Recenter map" className="rounded p-1.5 hover:bg-slate-100">
+          <button
+            aria-label="Recenter map"
+            className="rounded p-1.5 hover:bg-slate-100"
+          >
             <LocateFixed size={14} />
           </button>
         </div>

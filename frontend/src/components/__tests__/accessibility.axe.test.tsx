@@ -33,7 +33,7 @@ describe("accessibility: structural axe-core scan (jsdom-only rules)", () => {
     const { container } = render(
       <ThemeProvider>
         <Sidebar />
-      </ThemeProvider>
+      </ThemeProvider>,
     );
     const results = await axe(container, { rules: JSDOM_INAPPLICABLE_RULES });
     expect(results).toHaveNoViolations();
@@ -46,7 +46,9 @@ describe("accessibility: structural axe-core scan (jsdom-only rules)", () => {
   });
 
   it("AIInsightsPanel (populated) has no structural/ARIA violations", async () => {
-    const { container } = render(<AIInsightsPanel insights={DEFAULT_STATE.insights} />);
+    const { container } = render(
+      <AIInsightsPanel insights={DEFAULT_STATE.insights} />,
+    );
     const results = await axe(container, { rules: JSDOM_INAPPLICABLE_RULES });
     expect(results).toHaveNoViolations();
   });
@@ -58,19 +60,25 @@ describe("accessibility: structural axe-core scan (jsdom-only rules)", () => {
   });
 
   it("OperationsOverview has no structural/ARIA violations", async () => {
-    const { container } = render(<OperationsOverview overview={DEFAULT_STATE.operations} />);
+    const { container } = render(
+      <OperationsOverview overview={DEFAULT_STATE.operations} />,
+    );
     const results = await axe(container, { rules: JSDOM_INAPPLICABLE_RULES });
     expect(results).toHaveNoViolations();
   });
 
   it("SustainabilityScore has no structural/ARIA violations", async () => {
-    const { container } = render(<SustainabilityScore metrics={DEFAULT_STATE.sustainability} />);
+    const { container } = render(
+      <SustainabilityScore metrics={DEFAULT_STATE.sustainability} />,
+    );
     const results = await axe(container, { rules: JSDOM_INAPPLICABLE_RULES });
     expect(results).toHaveNoViolations();
   });
 
   it("TransportationOverview has no structural/ARIA violations", async () => {
-    const { container } = render(<TransportationOverview overview={DEFAULT_TRANSPORTATION.overview} />);
+    const { container } = render(
+      <TransportationOverview overview={DEFAULT_TRANSPORTATION.overview} />,
+    );
     const results = await axe(container, { rules: JSDOM_INAPPLICABLE_RULES });
     expect(results).toHaveNoViolations();
   });

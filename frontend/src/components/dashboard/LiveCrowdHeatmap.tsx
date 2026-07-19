@@ -17,15 +17,32 @@ export default function LiveCrowdHeatmap() {
       <CardHeader
         title="Live Crowd Heatmap"
         action={
-          <button aria-label="More options" className="text-[var(--text-secondary)]">
+          <button
+            aria-label="More options"
+            className="text-[var(--text-secondary)]"
+          >
             <MoreVertical size={16} />
           </button>
         }
       />
       <div className="flex items-center gap-4 px-5 pb-5">
-        <svg viewBox="0 0 300 300" className="h-56 w-56 shrink-0" role="img" aria-label="Live stadium crowd heatmap">
+        <svg
+          viewBox="0 0 300 300"
+          className="h-56 w-56 shrink-0"
+          role="img"
+          aria-label="Live stadium crowd heatmap"
+        >
           {RINGS.map((ring) => (
-            <circle key={ring.r} cx="150" cy="150" r={ring.r} fill="none" stroke={ring.color} strokeWidth="14" opacity={0.85} />
+            <circle
+              key={ring.r}
+              cx="150"
+              cy="150"
+              r={ring.r}
+              fill="none"
+              stroke={ring.color}
+              strokeWidth="14"
+              opacity={0.85}
+            />
           ))}
           <rect x="120" y="130" width="60" height="40" fill="#1f8a4c" rx="4" />
         </svg>

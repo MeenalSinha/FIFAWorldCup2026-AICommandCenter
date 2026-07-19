@@ -9,7 +9,10 @@ export default function SettingsPage() {
 
   return (
     <>
-      <Topbar title="Settings" subtitle="Platform, language and notification preferences" />
+      <Topbar
+        title="Settings"
+        subtitle="Platform, language and notification preferences"
+      />
       <div className="px-8 pb-10 max-w-xl">
         <Card>
           <CardHeader title="Preferences" />
@@ -26,7 +29,12 @@ export default function SettingsPage() {
             </label>
             <label className="flex items-center justify-between">
               <span>Live sensor updates</span>
-              <input type="checkbox" defaultChecked className="h-4 w-4" aria-label="Toggle live sensor updates" />
+              <input
+                type="checkbox"
+                defaultChecked
+                className="h-4 w-4"
+                aria-label="Toggle live sensor updates"
+              />
             </label>
             <div>
               <span className="block mb-1">Language</span>

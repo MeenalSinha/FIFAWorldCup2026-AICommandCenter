@@ -5,6 +5,7 @@ from app.core import security
 
 
 def test_decode_access_token_rejects_garbage_token():
+    """ """
     with pytest.raises(HTTPException) as exc_info:
         security.decode_access_token("not-a-real-jwt")
     assert exc_info.value.status_code == 401
@@ -28,4 +29,5 @@ async def test_require_role_rejects_insufficient_role():
 
 
 def test_sanitize_prompt_input_handles_empty_string():
+    """ """
     assert security.sanitize_prompt_input("") == ""

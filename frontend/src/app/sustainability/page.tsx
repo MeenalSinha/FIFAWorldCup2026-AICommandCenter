@@ -16,12 +16,17 @@ export default function SustainabilityPage() {
 
   return (
     <>
-      <Topbar title="Sustainability" subtitle="Energy, waste, recycling and transportation emissions tracking" />
+      <Topbar
+        title="Sustainability"
+        subtitle="Energy, waste, recycling and transportation emissions tracking"
+      />
       <div className="px-8 pb-10 grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
         <SustainabilityScore metrics={data.metrics} />
         <Card>
           <CardHeader title="AI Suggestion" />
-          <p className="px-5 pb-5 text-sm text-[var(--text-secondary)]">{data.suggestion}</p>
+          <p className="px-5 pb-5 text-sm text-[var(--text-secondary)]">
+            {data.suggestion}
+          </p>
         </Card>
       </div>
     </>

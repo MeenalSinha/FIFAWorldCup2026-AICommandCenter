@@ -10,6 +10,7 @@ from app.data import seed_data
 
 
 class VolunteerAgent(BaseAgent):
+    """ """
     name = "volunteer_agent"
     system_instruction = (
         "You are the Volunteer Copilot. Give volunteers short, numbered, "

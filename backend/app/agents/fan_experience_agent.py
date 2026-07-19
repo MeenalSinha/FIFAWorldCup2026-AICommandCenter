@@ -11,6 +11,7 @@ from app.services import maps_service, translation_service
 
 
 class FanExperienceAgent(BaseAgent):
+    """ """
     name = "fan_experience_agent"
     system_instruction = (
         "You are the Fan Experience Agent for a FIFA World Cup stadium. "

@@ -24,17 +24,23 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
 
 export const api = {
   digitalTwinState: () => request<DigitalTwinState>("/digital-twin/state"),
-  stadiumOperationsOverview: () => request<StadiumOperationsOverview>("/stadium-operations/overview"),
-  sustainabilityDashboard: () => request<SustainabilityDashboard>("/sustainability/dashboard"),
-  transportationOverview: () => request<TransportationOverview>("/transportation/overview"),
-  volunteerTasks: () => request<{ volunteers: Volunteer[] }>("/volunteer-copilot/tasks"),
-  lostFoundItems: () => request<{ items: LostFoundItem[] }>("/lost-found/items"),
+  stadiumOperationsOverview: () =>
+    request<StadiumOperationsOverview>("/stadium-operations/overview"),
+  sustainabilityDashboard: () =>
+    request<SustainabilityDashboard>("/sustainability/dashboard"),
+  transportationOverview: () =>
+    request<TransportationOverview>("/transportation/overview"),
+  volunteerTasks: () =>
+    request<{ volunteers: Volunteer[] }>("/volunteer-copilot/tasks"),
+  lostFoundItems: () =>
+    request<{ items: LostFoundItem[] }>("/lost-found/items"),
   askFanAgent: (question: string, language = "en") =>
     request<{ answer: string }>("/fan-experience/ask", {
       method: "POST",
       body: JSON.stringify({ question, language }),
     }),
-  dailyReport: () => request<DailyReport>("/operations-intelligence/daily-report"),
+  dailyReport: () =>
+    request<DailyReport>("/operations-intelligence/daily-report"),
 };
 
 export interface Gate {

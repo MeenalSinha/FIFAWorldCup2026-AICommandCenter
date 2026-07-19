@@ -32,14 +32,20 @@ export default class ErrorBoundary extends Component<Props, State> {
   render() {
     if (this.state.hasError) {
       return (
-        <div role="alert" className="m-8 app-card flex flex-col items-start gap-3 p-6">
+        <div
+          role="alert"
+          className="m-8 app-card flex flex-col items-start gap-3 p-6"
+        >
           <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-50 text-red-600">
             <AlertTriangle size={18} />
           </span>
           <div>
-            <p className="font-medium">Something went wrong loading this view.</p>
+            <p className="font-medium">
+              Something went wrong loading this view.
+            </p>
             <p className="text-sm text-[var(--text-secondary)] mt-1">
-              The rest of the platform is unaffected. You can try reloading this section.
+              The rest of the platform is unaffected. You can try reloading this
+              section.
             </p>
           </div>
           <button

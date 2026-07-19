@@ -40,9 +40,15 @@ export default function Sidebar() {
       <div className="flex items-center gap-3 px-6 py-6">
         <Trophy className="text-amber-400" size={30} strokeWidth={2} />
         <div>
-          <p className="font-display font-semibold leading-tight text-white">FIFA</p>
-          <p className="text-xs leading-tight text-slate-400 tracking-wide">WORLD CUP</p>
-          <p className="text-xs leading-tight text-slate-400 tracking-wide">2026</p>
+          <p className="font-display font-semibold leading-tight text-white">
+            FIFA
+          </p>
+          <p className="text-xs leading-tight text-slate-400 tracking-wide">
+            WORLD CUP
+          </p>
+          <p className="text-xs leading-tight text-slate-400 tracking-wide">
+            2026
+          </p>
         </div>
       </div>
 
@@ -57,7 +63,7 @@ export default function Sidebar() {
                 "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-colors",
                 active
                   ? "bg-[var(--sidebar-bg-active)] text-white font-medium"
-                  : "text-slate-400 hover:bg-white/5 hover:text-slate-100"
+                  : "text-slate-400 hover:bg-white/5 hover:text-slate-100",
               )}
               aria-current={active ? "page" : undefined}
             >
@@ -81,7 +87,9 @@ export default function Sidebar() {
           RK
         </div>
         <div className="min-w-0">
-          <p className="text-sm font-medium text-slate-100 truncate">Riya Kapoor</p>
+          <p className="text-sm font-medium text-slate-100 truncate">
+            Riya Kapoor
+          </p>
           <p className="text-xs text-slate-500 truncate">Operations Manager</p>
         </div>
       </div>
