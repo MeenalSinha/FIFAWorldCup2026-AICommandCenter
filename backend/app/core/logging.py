@@ -7,6 +7,7 @@ lines to stdout, which Cloud Run automatically ingests into Cloud
 Logging without any extra code -- so the same code path is correct in
 both environments.
 """
+
 import json
 import logging
 import sys
@@ -17,7 +18,9 @@ from typing import Any
 class JsonFormatter(logging.Formatter):
     def format(self, record: logging.LogRecord) -> str:
         payload: dict[str, Any] = {
-            "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(record.created)),
+            "timestamp": time.strftime(
+                "%Y-%m-%dT%H:%M:%SZ", time.gmtime(record.created)
+            ),
             "severity": record.levelname,
             "message": record.getMessage(),
             "logger": record.name,
@@ -35,11 +38,25 @@ def configure_logging() -> None:
     root.setLevel(logging.INFO)
 
 
-def audit_log(actor: str, action: str, resource: str, outcome: str = "success", **extra: Any) -> None:
+def audit_log(
+    actor: str, action: str, resource: str, outcome: str = "success", **extra: Any
+) -> None:
     """Append-only audit trail entry (Cloud Logging sink -> BigQuery in prod)."""
     logger = logging.getLogger("audit")
     record = logging.LogRecord(
-        name="audit", level=logging.INFO, pathname="", lineno=0, msg="audit_event", args=(), exc_info=None
+        name="audit",
+        level=logging.INFO,
+        pathname="",
+        lineno=0,
+        msg="audit_event",
+        args=(),
+        exc_info=None,
     )
-    record.extra_fields = {"actor": actor, "action": action, "resource": resource, "outcome": outcome, **extra}
+    record.extra_fields = {
+        "actor": actor,
+        "action": action,
+        "resource": resource,
+        "outcome": outcome,
+        **extra,
+    }
     logger.handle(record)

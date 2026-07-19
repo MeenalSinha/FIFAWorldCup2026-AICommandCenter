@@ -2,7 +2,11 @@ from fastapi import APIRouter, Depends
 
 from app.agents.accessibility_agent import AccessibilityAgent
 from app.core.security import get_current_user
-from app.models.schemas import AudioDescriptionRequest, RouteRequest, SignLanguageRequest
+from app.models.schemas import (
+    AudioDescriptionRequest,
+    RouteRequest,
+    SignLanguageRequest,
+)
 
 router = APIRouter()
 agent = AccessibilityAgent()
@@ -14,7 +18,9 @@ async def wheelchair_route(payload: RouteRequest, user=Depends(get_current_user)
 
 
 @router.post("/audio-description")
-async def audio_description(payload: AudioDescriptionRequest, user=Depends(get_current_user)):
+async def audio_description(
+    payload: AudioDescriptionRequest, user=Depends(get_current_user)
+):
     return await agent.audio_description(payload.scene)
 
 

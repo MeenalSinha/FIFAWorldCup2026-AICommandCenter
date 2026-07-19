@@ -2,6 +2,7 @@
 Stadium Operations Agent -- crowd density, gate congestion, restroom
 occupancy and concession queues, with recommended actions.
 """
+
 from typing import Any
 
 from app.agents.base_agent import BaseAgent

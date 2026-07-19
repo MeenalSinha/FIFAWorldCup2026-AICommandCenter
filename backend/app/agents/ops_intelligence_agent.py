@@ -3,6 +3,7 @@ Operations Intelligence -- executive dashboard summaries, risk forecasts,
 recommendations, daily reports, AI Operations Timeline ("what happened,
 why, and recommended next actions").
 """
+
 from typing import Any
 
 from app.agents.base_agent import BaseAgent
@@ -19,10 +20,19 @@ class OperationsIntelligenceAgent(BaseAgent):
 
     async def daily_report(self) -> dict[str, Any]:
         context = {"topic": "daily operations report"}
-        narrative = await self.think(f"KPIs: {seed_data.OPERATIONS_KPIS}. Summary seed: {seed_data.DAILY_SUMMARY}", context)
-        return {"kpis": seed_data.OPERATIONS_KPIS, "summary": seed_data.DAILY_SUMMARY, "narrative": narrative}
+        narrative = await self.think(
+            f"KPIs: {seed_data.OPERATIONS_KPIS}. Summary seed: {seed_data.DAILY_SUMMARY}",
+            context,
+        )
+        return {
+            "kpis": seed_data.OPERATIONS_KPIS,
+            "summary": seed_data.DAILY_SUMMARY,
+            "narrative": narrative,
+        }
 
     async def timeline_explanation(self, event: str) -> dict[str, Any]:
         context = {"topic": f"timeline event: {event}"}
-        explanation = await self.think(f"Explain what happened, why, and next actions for: {event}", context)
+        explanation = await self.think(
+            f"Explain what happened, why, and next actions for: {event}", context
+        )
         return {"event": event, "explanation": explanation}

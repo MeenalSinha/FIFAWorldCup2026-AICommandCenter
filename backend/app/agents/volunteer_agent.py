@@ -2,6 +2,7 @@
 Volunteer Copilot -- instant instructions, emergency procedures, lost
 child workflows, translation, incident reporting, AI task prioritization.
 """
+
 from typing import Any
 
 from app.agents.base_agent import BaseAgent
@@ -18,14 +19,25 @@ class VolunteerAgent(BaseAgent):
 
     async def get_procedure(self, situation: str) -> dict[str, Any]:
         context = {"topic": f"volunteer procedure for {situation}"}
-        steps = await self.think(f"A volunteer needs a procedure for: {situation}", context)
+        steps = await self.think(
+            f"A volunteer needs a procedure for: {situation}", context
+        )
         return {"situation": situation, "procedure": steps}
 
     async def prioritized_tasks(self) -> dict[str, Any]:
-        ranked = sorted(seed_data.VOLUNTEERS, key=lambda v: v["tasks_open"], reverse=True)
+        ranked = sorted(
+            seed_data.VOLUNTEERS, key=lambda v: v["tasks_open"], reverse=True
+        )
         return {"volunteers": ranked}
 
     async def report_incident(self, description: str, location: str) -> dict[str, Any]:
         context = {"topic": f"incident report at {location}"}
-        summary = await self.think(f"Summarize and triage this incident report: {description} at {location}", context)
-        return {"description": description, "location": location, "triage_summary": summary}
+        summary = await self.think(
+            f"Summarize and triage this incident report: {description} at {location}",
+            context,
+        )
+        return {
+            "description": description,
+            "location": location,
+            "triage_summary": summary,
+        }

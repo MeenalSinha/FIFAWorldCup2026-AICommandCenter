@@ -2,6 +2,7 @@
 Sustainability AI -- energy, waste, recycling, transportation emissions,
 with greener-alternative suggestions.
 """
+
 from typing import Any
 
 from app.agents.base_agent import BaseAgent
@@ -17,5 +18,7 @@ class SustainabilityAgent(BaseAgent):
 
     async def reason(self) -> dict[str, Any]:
         context = {"topic": "sustainability performance"}
-        suggestion = await self.think(f"Metrics: {seed_data.SUSTAINABILITY}. Suggest one improvement.", context)
+        suggestion = await self.think(
+            f"Metrics: {seed_data.SUSTAINABILITY}. Suggest one improvement.", context
+        )
         return {"metrics": seed_data.SUSTAINABILITY, "suggestion": suggestion}

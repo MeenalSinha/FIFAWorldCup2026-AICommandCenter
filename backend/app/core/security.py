@@ -6,6 +6,7 @@ Auth, RBAC and request-hardening primitives.
 - Prompt-injection sanitation for any text forwarded to Gemini
 - Basic input validation helpers
 """
+
 from datetime import UTC, datetime, timedelta
 
 from fastapi import Depends, HTTPException, status
@@ -16,7 +17,9 @@ from pydantic import BaseModel
 from app.core.config import get_settings
 
 settings = get_settings()
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl=f"{settings.api_v1_prefix}/auth/token", auto_error=False)
+oauth2_scheme = OAuth2PasswordBearer(
+    tokenUrl=f"{settings.api_v1_prefix}/auth/token", auto_error=False
+)
 
 ROLE_HIERARCHY = {
     "fan": 0,
@@ -33,17 +36,23 @@ class TokenData(BaseModel):
     role: str = "fan"
 
 
-def create_access_token(subject: str, role: str = "fan", expires_minutes: int | None = None) -> str:
+def create_access_token(
+    subject: str, role: str = "fan", expires_minutes: int | None = None
+) -> str:
     expire = datetime.now(UTC) + timedelta(
         minutes=expires_minutes or settings.access_token_expire_minutes
     )
     payload = {"sub": subject, "role": role, "exp": expire}
-    return jwt.encode(payload, settings.jwt_secret_key, algorithm=settings.jwt_algorithm)
+    return jwt.encode(
+        payload, settings.jwt_secret_key, algorithm=settings.jwt_algorithm
+    )
 
 
 def decode_access_token(token: str) -> TokenData:
     try:
-        payload = jwt.decode(token, settings.jwt_secret_key, algorithms=[settings.jwt_algorithm])
+        payload = jwt.decode(
+            token, settings.jwt_secret_key, algorithms=[settings.jwt_algorithm]
+        )
         return TokenData(sub=payload.get("sub", ""), role=payload.get("role", "fan"))
     except JWTError as exc:
         raise HTTPException(
@@ -60,7 +69,9 @@ async def get_current_user(token: str | None = Depends(oauth2_scheme)) -> TokenD
     if token is None:
         if settings.demo_mode:
             return TokenData(sub="demo-user", role="operations_manager")
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Not authenticated")
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="Not authenticated"
+        )
     return decode_access_token(token)
 
 
@@ -69,7 +80,9 @@ def require_role(minimum_role: str):
 
     def _checker(user: TokenData = Depends(get_current_user)) -> TokenData:
         if ROLE_HIERARCHY.get(user.role, 0) < ROLE_HIERARCHY.get(minimum_role, 99):
-            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Insufficient role")
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN, detail="Insufficient role"
+            )
         return user
 
     return _checker

@@ -5,6 +5,7 @@ All environment-driven settings live here. Nothing in the codebase should
 call os.environ directly outside of this module -- that keeps secret
 handling auditable in one place (see docs/SECURITY.md).
 """
+
 from functools import lru_cache
 
 from pydantic_settings import BaseSettings, SettingsConfigDict

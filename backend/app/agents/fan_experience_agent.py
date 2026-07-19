@@ -2,6 +2,7 @@
 Fan Experience Agent -- navigation, FAQs, schedules, ticket help,
 multilingual assistance, personalized recommendations.
 """
+
 from typing import Any
 
 from app.agents.base_agent import BaseAgent
@@ -29,5 +30,7 @@ class FanExperienceAgent(BaseAgent):
             "match": seed_data.STADIUM["match"],
         }
 
-    async def recommend_route(self, origin: str, destination: str, profile: str = "fastest") -> dict[str, Any]:
+    async def recommend_route(
+        self, origin: str, destination: str, profile: str = "fastest"
+    ) -> dict[str, Any]:
         return await maps_service.get_route(origin, destination, profile)  # type: ignore[arg-type]

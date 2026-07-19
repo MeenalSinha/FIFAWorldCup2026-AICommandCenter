@@ -4,6 +4,7 @@ Response Agent publishing to a topic that the Volunteer Copilot and
 Operations Intelligence agents subscribe to). Demo mode fans events out
 directly to the in-process WebSocket manager instead of a real topic.
 """
+
 from collections.abc import Awaitable, Callable
 from typing import Any
 

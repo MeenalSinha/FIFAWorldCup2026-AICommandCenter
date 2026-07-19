@@ -3,6 +3,7 @@ Deterministic seed / demo dataset for MetLife Stadium, ARG vs FRA group
 stage match. Used across services and endpoints so /seed resets the
 whole platform to a consistent, presentable state before a demo run.
 """
+
 import time
 
 STADIUM = {
@@ -84,15 +85,51 @@ TRANSPORTATION_OVERVIEW = {
 }
 
 VOLUNTEERS = [
-    {"id": "v-1", "name": "Volunteer Team North", "zone": "Gate A-B", "status": "available", "tasks_open": 2},
-    {"id": "v-2", "name": "Volunteer Team East", "zone": "Gate C", "status": "dispatched", "tasks_open": 4},
-    {"id": "v-3", "name": "Volunteer Team South", "zone": "Gate D-E", "status": "available", "tasks_open": 1},
+    {
+        "id": "v-1",
+        "name": "Volunteer Team North",
+        "zone": "Gate A-B",
+        "status": "available",
+        "tasks_open": 2,
+    },
+    {
+        "id": "v-2",
+        "name": "Volunteer Team East",
+        "zone": "Gate C",
+        "status": "dispatched",
+        "tasks_open": 4,
+    },
+    {
+        "id": "v-3",
+        "name": "Volunteer Team South",
+        "zone": "Gate D-E",
+        "status": "available",
+        "tasks_open": 1,
+    },
 ]
 
 LOST_FOUND_ITEMS = [
-    {"id": "lf-1", "description": "Black backpack", "location": "Near Gate B", "status": "reported", "reported_at": "18:42"},
-    {"id": "lf-2", "description": "Blue child's cap", "location": "Section 114", "status": "matched", "reported_at": "18:10"},
-    {"id": "lf-3", "description": "Prescription glasses, tortoiseshell", "location": "Near Food Stall 12", "status": "reported", "reported_at": "19:03"},
+    {
+        "id": "lf-1",
+        "description": "Black backpack",
+        "location": "Near Gate B",
+        "status": "reported",
+        "reported_at": "18:42",
+    },
+    {
+        "id": "lf-2",
+        "description": "Blue child's cap",
+        "location": "Section 114",
+        "status": "matched",
+        "reported_at": "18:10",
+    },
+    {
+        "id": "lf-3",
+        "description": "Prescription glasses, tortoiseshell",
+        "location": "Near Food Stall 12",
+        "status": "reported",
+        "reported_at": "19:03",
+    },
 ]
 
 OPERATIONS_KPIS = {
@@ -119,4 +156,15 @@ DAILY_SUMMARY = {
 
 INCIDENT_TYPES = ["medical", "crowd_panic", "weather", "security", "lost_child"]
 
-TRANSLATIONS_DEMO_LANGUAGES = ["en", "es", "fr", "pt", "de", "ar", "hi", "zh", "ja", "ko"]
+TRANSLATIONS_DEMO_LANGUAGES = [
+    "en",
+    "es",
+    "fr",
+    "pt",
+    "de",
+    "ar",
+    "hi",
+    "zh",
+    "ja",
+    "ko",
+]

@@ -20,6 +20,7 @@ We keep this file GCP-shaped (Vertex AI's SDK mirrors this interface
 almost 1:1 -- swap `google.generativeai` for `vertexai.generative_models`
 to move from AI Studio to Vertex AI in production, see docs/DEPLOYMENT.md).
 """
+
 import asyncio
 import hashlib
 import logging
@@ -106,17 +107,26 @@ async def _call_with_retry(client, full_prompt: str) -> str:
                 asyncio.to_thread(_call_gemini_sync, client, full_prompt),
                 timeout=REQUEST_TIMEOUT_SECONDS + 2,
             )
-        except Exception as exc:  # pragma: no cover - exercised via unit test with a fake client
+        except (
+            Exception
+        ) as exc:  # pragma: no cover - exercised via unit test with a fake client
             last_exc = exc
             if attempt < MAX_RETRIES:
                 backoff = BASE_BACKOFF_SECONDS * (2**attempt)
-                logger.warning("Gemini call failed (attempt %d/%d): %s", attempt + 1, MAX_RETRIES + 1, exc)
+                logger.warning(
+                    "Gemini call failed (attempt %d/%d): %s",
+                    attempt + 1,
+                    MAX_RETRIES + 1,
+                    exc,
+                )
                 await asyncio.sleep(backoff)
     assert last_exc is not None
     raise last_exc
 
 
-async def generate(prompt: str, *, system_instruction: str = "", context: dict | None = None) -> str:
+async def generate(
+    prompt: str, *, system_instruction: str = "", context: dict | None = None
+) -> str:
     """Main entry point used by every agent.
 
     `prompt` is treated as user-authored data and is sanitized; the
@@ -133,7 +143,10 @@ async def generate(prompt: str, *, system_instruction: str = "", context: dict |
             try:
                 return await _call_with_retry(client, full_prompt)
             except Exception as exc:  # pragma: no cover
-                logger.error("Gemini call failed after retries, falling back to demo output: %s", exc)
+                logger.error(
+                    "Gemini call failed after retries, falling back to demo output: %s",
+                    exc,
+                )
 
     return _demo_fallback(safe_prompt, system_instruction, context or {})
 
@@ -145,7 +158,9 @@ def _demo_fallback(prompt: str, system_instruction: str, context: dict) -> str:
     string per call site, so the AI Assistant, incident copilot, etc.
     all read as generated language rather than static text.
     """
-    tone = _deterministic_variant(prompt or "seed", ["measured", "urgent", "reassuring"])
+    tone = _deterministic_variant(
+        prompt or "seed", ["measured", "urgent", "reassuring"]
+    )
     topic = context.get("topic", "stadium operations")
     if tone == "urgent":
         return (

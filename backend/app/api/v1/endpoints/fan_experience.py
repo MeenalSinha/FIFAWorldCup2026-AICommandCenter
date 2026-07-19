@@ -11,10 +11,14 @@ agent = FanExperienceAgent()
 
 @router.post("/ask")
 @limiter.limit("20/minute")
-async def ask(request: Request, payload: FanQuestionRequest, user=Depends(get_current_user)):
+async def ask(
+    request: Request, payload: FanQuestionRequest, user=Depends(get_current_user)
+):
     return await agent.reason(payload.question, payload.language)
 
 
 @router.post("/route")
 async def route(payload: RouteRequest, user=Depends(get_current_user)):
-    return await agent.recommend_route(payload.origin, payload.destination, payload.profile)
+    return await agent.recommend_route(
+        payload.origin, payload.destination, payload.profile
+    )

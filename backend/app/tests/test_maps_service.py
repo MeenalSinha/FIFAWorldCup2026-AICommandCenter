@@ -4,7 +4,9 @@ from app.services import maps_service
 
 
 @pytest.mark.asyncio
-@pytest.mark.parametrize("profile", ["fastest", "safest", "least_crowded", "wheelchair", "family"])
+@pytest.mark.parametrize(
+    "profile", ["fastest", "safest", "least_crowded", "wheelchair", "family"]
+)
 async def test_get_route_profiles(profile):
     result = await maps_service.get_route("Gate A", "Section 114", profile)
     assert result["profile"] == profile

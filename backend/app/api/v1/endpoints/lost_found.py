@@ -15,7 +15,13 @@ async def items(user=Depends(get_current_user)):
 
 @router.post("/search")
 @limiter.limit("20/minute")
-async def search(request: Request, payload: LostFoundQuery, user=Depends(get_current_user)):
+async def search(
+    request: Request, payload: LostFoundQuery, user=Depends(get_current_user)
+):
     q = payload.query.lower()
-    matches = [i for i in seed_data.LOST_FOUND_ITEMS if q in i["description"].lower() or q in i["location"].lower()]
+    matches = [
+        i
+        for i in seed_data.LOST_FOUND_ITEMS
+        if q in i["description"].lower() or q in i["location"].lower()
+    ]
     return {"query": payload.query, "matches": matches}

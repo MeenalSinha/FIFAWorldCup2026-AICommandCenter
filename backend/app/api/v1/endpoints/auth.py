@@ -1,4 +1,5 @@
 """OAuth2 password-flow token issuance (demo users) + RBAC role list."""
+
 from fastapi import APIRouter, Depends, Request
 from fastapi.security import OAuth2PasswordRequestForm
 

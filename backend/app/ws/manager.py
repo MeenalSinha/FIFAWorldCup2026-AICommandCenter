@@ -4,6 +4,7 @@ operations KPIs). The demo data generator in app/main.py pushes a
 snapshot on an interval; in production this same channel carries real
 Pub/Sub-triggered events.
 """
+
 import asyncio
 import json
 from typing import Any

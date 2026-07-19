@@ -19,5 +19,7 @@ async def tasks(user=Depends(require_role("volunteer"))):
 
 
 @router.post("/incident-report")
-async def incident_report(payload: VolunteerIncidentRequest, user=Depends(require_role("volunteer"))):
+async def incident_report(
+    payload: VolunteerIncidentRequest, user=Depends(require_role("volunteer"))
+):
     return await agent.report_incident(payload.description, payload.location)

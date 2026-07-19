@@ -4,7 +4,8 @@ import pytest
 @pytest.mark.asyncio
 async def test_volunteer_procedure(client):
     response = await client.post(
-        "/api/v1/volunteer-copilot/procedure", json={"situation": "lost child near Gate C"}
+        "/api/v1/volunteer-copilot/procedure",
+        json={"situation": "lost child near Gate C"},
     )
     assert response.status_code == 200
     body = response.json()
@@ -26,7 +27,10 @@ async def test_volunteer_tasks(client):
 async def test_volunteer_incident_report(client):
     response = await client.post(
         "/api/v1/volunteer-copilot/incident-report",
-        json={"description": "Fan slipped near the east concourse", "location": "East Concourse"},
+        json={
+            "description": "Fan slipped near the east concourse",
+            "location": "East Concourse",
+        },
     )
     assert response.status_code == 200
     body = response.json()

@@ -47,6 +47,8 @@ async def test_call_with_retry_raises_after_exhausting_attempts():
 async def test_generate_falls_back_to_demo_when_live_ai_disabled():
     # Demo mode is on by default in tests, so generate() should never
     # attempt a live call and should always return non-empty text.
-    result = await gemini_service.generate("hello", system_instruction="be helpful", context={"topic": "test"})
+    result = await gemini_service.generate(
+        "hello", system_instruction="be helpful", context={"topic": "test"}
+    )
     assert isinstance(result, str)
     assert len(result) > 0

@@ -11,5 +11,9 @@ agent = IncidentResponseAgent()
 
 @router.post("/report")
 @limiter.limit("30/minute")
-async def report(request: Request, payload: IncidentRequest, user=Depends(require_role("staff"))):
-    return await agent.reason(payload.incident_type, payload.description, payload.location)
+async def report(
+    request: Request, payload: IncidentRequest, user=Depends(require_role("staff"))
+):
+    return await agent.reason(
+        payload.incident_type, payload.description, payload.location
+    )

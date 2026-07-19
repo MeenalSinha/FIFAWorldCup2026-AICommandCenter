@@ -5,6 +5,7 @@ Wires together: CORS, rate limiting, routers, WebSocket live feed, and a
 background task that simulates the live sensor/queue feed in demo mode
 (Pub/Sub-driven in production).
 """
+
 import asyncio
 import random
 import time
@@ -33,7 +34,9 @@ configure_logging()
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     task = asyncio.create_task(_simulated_live_feed())
-    audit_log(actor="system", action="startup", resource="app", demo_mode=settings.demo_mode)
+    audit_log(
+        actor="system", action="startup", resource="app", demo_mode=settings.demo_mode
+    )
     yield
     task.cancel()
 
@@ -62,7 +65,9 @@ class SecurityHeadersMiddleware(BaseHTTPMiddleware):
         response.headers["X-Content-Type-Options"] = "nosniff"
         response.headers["X-Frame-Options"] = "DENY"
         response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
-        response.headers["Strict-Transport-Security"] = "max-age=63072000; includeSubDomains"
+        response.headers["Strict-Transport-Security"] = (
+            "max-age=63072000; includeSubDomains"
+        )
         return response
 
 
@@ -76,7 +81,11 @@ app.include_router(api_router, prefix=settings.api_v1_prefix)
 @app.get("/health")
 @limiter.limit("30/minute")
 async def health(request: Request):
-    return {"status": "ok", "environment": settings.environment, "demo_mode": settings.demo_mode}
+    return {
+        "status": "ok",
+        "environment": settings.environment,
+        "demo_mode": settings.demo_mode,
+    }
 
 
 @app.get("/")
@@ -109,7 +118,12 @@ async def _simulated_live_feed() -> None:
     while True:
         await asyncio.sleep(5)
         gates = [
-            {**g, "occupancy_pct": max(5, min(99, g["occupancy_pct"] + random.randint(-4, 4)))}
+            {
+                **g,
+                "occupancy_pct": max(
+                    5, min(99, g["occupancy_pct"] + random.randint(-4, 4))
+                ),
+            }
             for g in seed_data.GATES
         ]
         payload = {

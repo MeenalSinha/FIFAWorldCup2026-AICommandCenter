@@ -7,6 +7,7 @@ public function signatures match google-cloud-firestore usage 1:1, so
 switching to real Firestore is a matter of implementing the same
 interface against `firestore.AsyncClient()`.
 """
+
 import asyncio
 from typing import Any
 

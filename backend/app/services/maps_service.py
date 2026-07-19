@@ -6,6 +6,7 @@ Smart Navigation and Transportation modules render without a billed
 Maps API key. Swap in `googlemaps` client calls once
 GOOGLE_MAPS_API_KEY is set (see docs/DEPLOYMENT.md).
 """
+
 from typing import Literal
 
 from app.core.config import get_settings
@@ -17,7 +18,9 @@ RouteProfile = Literal["fastest", "safest", "least_crowded", "wheelchair", "fami
 _MOCK_STADIUM_CENTER = {"lat": 40.8135, "lng": -74.0745}
 
 
-async def get_route(origin: str, destination: str, profile: RouteProfile = "fastest") -> dict:
+async def get_route(
+    origin: str, destination: str, profile: RouteProfile = "fastest"
+) -> dict:
     if settings.google_maps_api_key and not settings.demo_mode:
         # Production path: call Routes API / Directions API here with
         # googlemaps.Client(key=settings.google_maps_api_key).directions(...)

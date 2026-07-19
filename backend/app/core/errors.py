@@ -7,6 +7,7 @@ consistent shape the frontend can rely on:
 
 Registered once in app/main.py via `register_exception_handlers(app)`.
 """
+
 import logging
 import uuid
 
@@ -28,16 +29,27 @@ def _error_body(code: str, message: str, request_id: str) -> dict:
     return {"error": {"code": code, "message": message, "request_id": request_id}}
 
 
-async def validation_exception_handler(request: Request, exc: RequestValidationError) -> JSONResponse:
+async def validation_exception_handler(
+    request: Request, exc: RequestValidationError
+) -> JSONResponse:
     request_id = str(uuid.uuid4())
-    logger.warning("validation_error request_id=%s path=%s errors=%s", request_id, request.url.path, exc.errors())
+    logger.warning(
+        "validation_error request_id=%s path=%s errors=%s",
+        request_id,
+        request.url.path,
+        exc.errors(),
+    )
     return JSONResponse(
         status_code=HTTP_422,
-        content=_error_body("validation_error", "One or more fields failed validation.", request_id),
+        content=_error_body(
+            "validation_error", "One or more fields failed validation.", request_id
+        ),
     )
 
 
-async def http_exception_handler(request: Request, exc: StarletteHTTPException) -> JSONResponse:
+async def http_exception_handler(
+    request: Request, exc: StarletteHTTPException
+) -> JSONResponse:
     request_id = str(uuid.uuid4())
     return JSONResponse(
         status_code=exc.status_code,
@@ -50,10 +62,17 @@ async def unhandled_exception_handler(request: Request, exc: Exception) -> JSONR
     request_id = str(uuid.uuid4())
     # Full detail goes to Cloud Logging; the client only ever sees a
     # generic message + request_id so internals are never leaked.
-    logger.error("unhandled_exception request_id=%s path=%s", request_id, request.url.path, exc_info=exc)
+    logger.error(
+        "unhandled_exception request_id=%s path=%s",
+        request_id,
+        request.url.path,
+        exc_info=exc,
+    )
     return JSONResponse(
         status_code=500,
-        content=_error_body("internal_error", "Something went wrong. Please try again.", request_id),
+        content=_error_body(
+            "internal_error", "Something went wrong. Please try again.", request_id
+        ),
     )
 
 

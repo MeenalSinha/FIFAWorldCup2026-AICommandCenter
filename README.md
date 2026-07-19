@@ -1,5 +1,13 @@
 # FIFA World Cup 2026 - AI Command Center
 
+**Problem Statement Alignment:**
+This GenAI-enabled solution is specifically built to enhance stadium operations and the overall tournament experience for fans, organizers, volunteers, and venue staff during the FIFA World Cup 2026. 
+It leverages Generative AI to improve:
+- **Navigation & Multilingual Assistance:** AI-driven Fan Experience Agents helping international fans find their seats and amenities in any language.
+- **Crowd Management & Accessibility:** Real-time AI analysis of crowd densities with specialized routing for accessible pathways.
+- **Transportation & Sustainability:** AI-optimized transit routing and real-time carbon tracking/energy management dashboards.
+- **Operational Intelligence & Real-Time Decision Support:** Stadium Operations and Incident Response AI agents providing real-time recommendations to venue staff based on live data feeds.
+
 An AI Operating System for Smart Stadiums: eight Gemini-backed agents
 (Fan Experience, Stadium Operations, Volunteer Copilot, Accessibility,
 Sustainability, Transportation, Incident Response, Operations

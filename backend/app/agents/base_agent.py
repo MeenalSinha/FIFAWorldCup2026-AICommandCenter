@@ -7,6 +7,7 @@ recommendation, not just raw numbers -- this is what makes the platform
 "agentic" rather than a static dashboard: agents reason over state and
 propose or take action.
 """
+
 from typing import Any
 
 from app.services import gemini_service

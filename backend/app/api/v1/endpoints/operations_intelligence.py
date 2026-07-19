@@ -14,5 +14,7 @@ async def daily_report(user=Depends(require_role("operations_manager"))):
 
 
 @router.post("/timeline-explanation")
-async def timeline_explanation(payload: TimelineEventRequest, user=Depends(get_current_user)):
+async def timeline_explanation(
+    payload: TimelineEventRequest, user=Depends(get_current_user)
+):
     return await agent.timeline_explanation(payload.event)
