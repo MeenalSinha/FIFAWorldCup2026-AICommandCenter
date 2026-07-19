@@ -1,0 +1,27 @@
+[MASTER]
+ignore=CVS
+jobs=1
+persistent=yes
+unsafe-load-any-extension=no
+
+[MESSAGES CONTROL]
+disable=
+    missing-module-docstring,
+    missing-class-docstring,
+    missing-function-docstring,
+    empty-docstring,
+    unused-argument,
+    redefined-outer-name,
+    too-few-public-methods,
+    line-too-long,
+    invalid-name,
+    global-statement,
+    import-outside-toplevel,
+    protected-access,
+    broad-exception-caught,
+    duplicate-code
+
+[REPORTS]
+output-format=text
+reports=no
+score=yes
