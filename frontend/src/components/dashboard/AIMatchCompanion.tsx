@@ -51,20 +51,23 @@ export default function AIMatchCompanion() {
           </div>
         </dl>
 
-        <Link
-          href="/ai-assistant"
-          className="flex items-center justify-between rounded-xl bg-blue-600 px-4 py-3 text-sm font-medium text-white hover:bg-blue-700 transition-colors"
-        >
-          <span className="flex items-center gap-2">
-            <Sparkles size={16} />
-            Ask AI Assistant
-          </span>
-          <ArrowRight size={16} />
-        </Link>
-
-        <div className="relative mt-auto h-32 rounded-xl overflow-hidden bg-gradient-to-b from-slate-700 to-slate-900">
-          <div className="absolute inset-0 flex items-end justify-center pb-3">
-            <div className="h-10 w-4/5 rounded-t-full bg-gradient-to-t from-emerald-700/70 to-transparent" />
+        <div className="mt-auto -mx-5 -mb-5 relative h-48">
+          <img
+            src="/stadium-bg.png"
+            alt="Stadium View"
+            className="w-full h-full object-cover object-center rounded-b-[1.5rem]"
+          />
+          <div className="absolute inset-x-5 top-4">
+            <Link
+              href="/ai-assistant"
+              className="flex items-center justify-between rounded-xl bg-blue-600/95 backdrop-blur-sm px-4 py-3 text-sm font-medium text-white hover:bg-blue-700 transition-colors shadow-lg"
+            >
+              <span className="flex items-center gap-2">
+                <Sparkles size={16} />
+                Ask AI Assistant
+              </span>
+              <ArrowRight size={16} />
+            </Link>
           </div>
         </div>
       </div>

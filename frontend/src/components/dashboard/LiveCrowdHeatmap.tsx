@@ -26,26 +26,13 @@ export default function LiveCrowdHeatmap() {
         }
       />
       <div className="flex items-center gap-4 px-5 pb-5">
-        <svg
-          viewBox="0 0 300 300"
-          className="h-56 w-56 shrink-0"
-          role="img"
-          aria-label="Live stadium crowd heatmap"
-        >
-          {RINGS.map((ring) => (
-            <circle
-              key={ring.r}
-              cx="150"
-              cy="150"
-              r={ring.r}
-              fill="none"
-              stroke={ring.color}
-              strokeWidth="14"
-              opacity={0.85}
-            />
-          ))}
-          <rect x="120" y="130" width="60" height="40" fill="#1f8a4c" rx="4" />
-        </svg>
+        <div className="relative h-56 w-56 shrink-0 rounded-xl overflow-hidden bg-slate-50 dark:bg-slate-900 border border-[var(--border-soft)]">
+          <img
+            src="/stadium-heatmap.png"
+            alt="Live stadium crowd heatmap"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        </div>
 
         <div className="flex h-56 flex-col justify-between text-xs text-[var(--text-secondary)]">
           <span>High</span>

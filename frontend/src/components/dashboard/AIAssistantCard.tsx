@@ -114,10 +114,10 @@ export default function AIAssistantCard() {
         />
         <button
           type="submit"
-          className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white hover:bg-blue-700"
+          className="flex h-8 w-8 items-center justify-center rounded-lg text-[var(--text-secondary)] hover:text-blue-600 transition-colors"
           aria-label="Send message"
         >
-          <Send size={14} />
+          <Send size={16} />
         </button>
       </form>
     </Card>

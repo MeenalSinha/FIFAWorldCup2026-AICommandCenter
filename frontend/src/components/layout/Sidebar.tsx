@@ -37,19 +37,12 @@ export default function Sidebar() {
 
   return (
     <aside className="hidden md:flex w-64 shrink-0 flex-col bg-[var(--sidebar-bg)] text-slate-200 min-h-screen">
-      <div className="flex items-center gap-3 px-6 py-6">
-        <Trophy className="text-amber-400" size={30} strokeWidth={2} />
-        <div>
-          <p className="font-display font-semibold leading-tight text-white">
-            FIFA
-          </p>
-          <p className="text-xs leading-tight text-slate-400 tracking-wide">
-            WORLD CUP
-          </p>
-          <p className="text-xs leading-tight text-slate-400 tracking-wide">
-            2026
-          </p>
-        </div>
+      <div className="px-6 py-6 pb-8">
+        <img
+          src="/fifa-logo.png"
+          alt="FIFA World Cup 2026"
+          className="h-16 w-auto object-contain"
+        />
       </div>
 
       <nav className="flex-1 px-3 space-y-1" aria-label="Primary">

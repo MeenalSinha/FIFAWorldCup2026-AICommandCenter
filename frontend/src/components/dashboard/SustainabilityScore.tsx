@@ -108,29 +108,35 @@ export default function SustainabilityScore({
           </text>
         </svg>
 
-        <ul className="flex-1 space-y-2.5">
+        <ul className="flex-1 grid grid-cols-1 gap-y-3">
           {rows.map(({ label, value, icon: Icon, color }) => (
-            <li key={label} className="flex items-center gap-2.5">
+            <li key={label} className="flex items-center gap-3">
               <span
-                className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg ${color}`}
+                className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${color}`}
               >
-                <Icon size={14} />
+                <Icon size={16} />
               </span>
-              <span className="min-w-0 flex-1 text-xs text-[var(--text-secondary)]">
-                {label}
-              </span>
-              <span className="text-sm font-medium">{value}</span>
+              <div className="flex flex-col leading-tight">
+                <span className="text-[11px] font-medium text-[var(--text-secondary)]">
+                  {label}
+                </span>
+                <span className="text-xs font-bold text-[var(--text-primary)] mt-0.5">
+                  {value}
+                </span>
+              </div>
             </li>
           ))}
         </ul>
       </div>
-      <div className="px-5 pb-5">
-        <Link
-          href="/sustainability"
-          className="text-sm font-medium text-blue-600 hover:text-blue-700 flex items-center gap-1"
-        >
-          View Sustainability Dashboard <ChevronRight size={14} />
-        </Link>
+      <div className="px-5 pb-5 mt-auto">
+        <div className="border-t border-[var(--border-soft)] pt-4 mt-2">
+          <Link
+            href="/sustainability"
+            className="text-sm font-medium text-blue-600 hover:text-blue-700 flex items-center justify-between"
+          >
+            View Sustainability Dashboard <ChevronRight size={16} />
+          </Link>
+        </div>
       </div>
     </Card>
   );

@@ -65,12 +65,12 @@ export default function AIInsightsPanel({ insights }: { insights: Insight[] }) {
           })}
         </ul>
       )}
-      <div className="px-5 pb-5">
+      <div className="px-5 pb-5 mt-auto border-t border-[var(--border-soft)] pt-4 mx-2">
         <a
           href="/reports"
-          className="text-sm font-medium text-blue-600 hover:text-blue-700 flex items-center gap-1"
+          className="text-sm font-medium text-blue-600 hover:text-blue-700 flex items-center justify-between"
         >
-          View All Insights <ChevronRight size={14} />
+          View All Insights <ChevronRight size={16} />
         </a>
       </div>
     </Card>

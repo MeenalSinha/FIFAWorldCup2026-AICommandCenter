@@ -69,20 +69,22 @@ export default function TransportationOverview({
         {items.map(({ label, status, detail, icon: Icon, color }) => (
           <div
             key={label}
-            className="rounded-xl border border-[var(--border-soft)] p-3"
+            className="flex items-center gap-3 rounded-xl border border-[var(--border-soft)] p-3 bg-white hover:bg-slate-50 transition-colors"
           >
             <span
-              className={`inline-flex h-8 w-8 items-center justify-center rounded-lg ${color}`}
+              className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${color}`}
             >
-              <Icon size={16} />
+              <Icon size={20} />
             </span>
-            <p className="mt-2 text-xs text-[var(--text-secondary)]">{label}</p>
-            <p
-              className={`text-sm font-semibold ${STATUS_COLOR[status] ?? ""}`}
-            >
-              {status}
-            </p>
-            <p className="text-xs text-[var(--text-secondary)]">{detail}</p>
+            <div className="flex flex-col leading-tight">
+              <p className="text-[11px] font-medium text-[var(--text-secondary)]">{label}</p>
+              <p
+                className={`text-sm font-bold mt-0.5 ${STATUS_COLOR[status] ?? ""}`}
+              >
+                {status}
+              </p>
+              <p className="text-[10px] text-[var(--text-secondary)] mt-0.5">{detail}</p>
+            </div>
           </div>
         ))}
       </div>

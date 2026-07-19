@@ -66,30 +66,36 @@ export default function OperationsOverview({
   return (
     <Card>
       <CardHeader title="Operations Overview" />
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 px-5 pb-4">
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 px-5 pb-4">
         {stats.map(({ label, value, unit, icon: Icon, color }) => (
           <div
             key={label}
-            className="rounded-xl border border-[var(--border-soft)] p-3"
+            className="flex items-center justify-between rounded-xl border border-[var(--border-soft)] p-3 bg-white hover:bg-slate-50 transition-colors"
           >
+            <div>
+              <p className="text-[11px] font-medium text-[var(--text-secondary)]">{label}</p>
+              <p className="mt-1 text-xl font-bold leading-none text-[var(--text-primary)]">
+                {value}
+              </p>
+              <p className="mt-1 text-[10px] text-[var(--text-secondary)]">{unit}</p>
+            </div>
             <span
-              className={`inline-flex h-8 w-8 items-center justify-center rounded-lg ${color}`}
+              className={`flex h-8 w-8 items-center justify-center rounded-lg ${color}`}
             >
               <Icon size={16} />
             </span>
-            <p className="mt-2 text-lg font-semibold leading-tight">{value}</p>
-            <p className="text-xs text-[var(--text-secondary)]">{unit}</p>
-            <p className="text-xs text-[var(--text-secondary)]">{label}</p>
           </div>
         ))}
       </div>
-      <div className="px-5 pb-5">
-        <Link
-          href="/operations"
-          className="text-sm font-medium text-blue-600 hover:text-blue-700 flex items-center gap-1"
-        >
-          View Full Operations Dashboard <ChevronRight size={14} />
-        </Link>
+      <div className="px-5 pb-5 mt-auto">
+        <div className="border-t border-[var(--border-soft)] pt-4 mt-2">
+          <Link
+            href="/operations"
+            className="text-sm font-medium text-blue-600 hover:text-blue-700 flex items-center justify-between"
+          >
+            View Full Operations Dashboard <ChevronRight size={16} />
+          </Link>
+        </div>
       </div>
     </Card>
   );

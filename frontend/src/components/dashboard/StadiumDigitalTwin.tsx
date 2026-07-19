@@ -41,101 +41,72 @@ export default function StadiumDigitalTwin({ gates }: { gates: Gate[] }) {
         }
       />
 
-      <div className="relative mx-5 mb-4 h-72 rounded-xl bg-slate-100 dark:bg-slate-800/60 overflow-hidden">
-        <svg
-          viewBox="0 0 600 300"
-          className="h-full w-full"
-          role="img"
-          aria-label="Stadium digital twin map"
-        >
-          <ellipse cx="300" cy="150" rx="280" ry="140" fill="#dbe3ef" />
-          <ellipse cx="300" cy="150" rx="220" ry="105" fill="#c3cfe2" />
-          <ellipse cx="300" cy="150" rx="150" ry="70" fill="#2f8f4e" />
-          <rect
-            x="270"
-            y="105"
-            width="60"
-            height="90"
-            fill="none"
-            stroke="#ffffff"
-            strokeWidth="1.5"
-            opacity="0.7"
-          />
-          <line
-            x1="300"
-            y1="105"
-            x2="300"
-            y2="195"
-            stroke="#ffffff"
-            strokeWidth="1.5"
-            opacity="0.7"
-          />
-          <circle
-            cx="300"
-            cy="150"
-            r="18"
-            fill="none"
-            stroke="#ffffff"
-            strokeWidth="1.5"
-            opacity="0.7"
-          />
+      <div className="relative mx-5 mb-4 h-72 rounded-xl bg-slate-100 dark:bg-slate-800 overflow-hidden">
+        <img
+          src="/stadium-3d.png"
+          alt="Stadium 3D Digital Twin"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
 
-          {gates.map((gate) => {
-            const pos = GATE_POSITIONS[gate.id];
-            if (!pos) return null;
-            return (
-              <g key={gate.id}>
-                <circle
-                  cx={pos.x}
-                  cy={pos.y}
-                  r="10"
-                  fill={DENSITY_COLOR[gate.density]}
-                  stroke="white"
-                  strokeWidth="2"
-                />
-                <text
-                  x={pos.x + pos.labelDx}
-                  y={pos.y + pos.labelDy}
-                  textAnchor="middle"
-                  fontSize="11"
-                  fontWeight={600}
-                  fill="#1e293b"
-                >
+        {gates.map((gate) => {
+          const pos = GATE_POSITIONS[gate.id];
+          if (!pos) return null;
+
+          // Convert arbitrary SVG coordinates to rough percentages for absolute positioning
+          const pctX = (pos.x / 600) * 100;
+          const pctY = (pos.y / 300) * 100;
+          return (
+            <div
+              key={gate.id}
+              className="absolute flex flex-col items-center justify-center transform -translate-x-1/2 -translate-y-1/2"
+              style={{ left: `${pctX}%`, top: `${pctY}%` }}
+            >
+              <div className="bg-white rounded-lg px-2 py-1 shadow-card flex flex-col items-center text-center leading-none mb-1">
+                <p className="text-[10px] font-bold text-slate-800">
                   {gate.name}
-                </text>
-                <text
-                  x={pos.x + pos.labelDx}
-                  y={pos.y + pos.labelDy + 12}
-                  textAnchor="middle"
-                  fontSize="9"
-                  fill="#64748b"
-                  className="capitalize"
-                >
-                  {gate.density}
-                </text>
-              </g>
-            );
-          })}
-        </svg>
+                </p>
+                <div className="flex items-center gap-1 mt-0.5">
+                  <span
+                    className="status-dot"
+                    style={{ backgroundColor: DENSITY_COLOR[gate.density] }}
+                  />
+                  <p className="text-[9px] text-slate-500 capitalize">
+                    {gate.density}
+                  </p>
+                </div>
+              </div>
+              <div
+                className="w-4 h-4 rounded-full border-2 border-white shadow-sm"
+                style={{ backgroundColor: DENSITY_COLOR[gate.density] }}
+              />
+            </div>
+          );
+        })}
 
-        <div className="absolute right-3 top-3 flex flex-col gap-1.5 rounded-lg bg-white/90 p-1 shadow-card">
+        <div className="absolute right-3 top-3 flex flex-col gap-1.5 rounded-lg bg-white/90 p-1 shadow-card text-slate-600">
+          <button
+            aria-label="Toggle 3D"
+            className="rounded p-1.5 hover:bg-slate-100 font-bold text-xs"
+          >
+            3D
+          </button>
           <button
             aria-label="Zoom in"
             className="rounded p-1.5 hover:bg-slate-100"
           >
-            <Plus size={14} />
+            <Plus size={16} />
           </button>
           <button
             aria-label="Zoom out"
             className="rounded p-1.5 hover:bg-slate-100"
           >
-            <Minus size={14} />
+            <Minus size={16} />
           </button>
           <button
             aria-label="Recenter map"
             className="rounded p-1.5 hover:bg-slate-100"
           >
-            <LocateFixed size={14} />
+            <LocateFixed size={16} />
           </button>
         </div>
       </div>
