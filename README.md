@@ -17,6 +17,9 @@ Sustainability, Transportation, Incident Response, Operations
 Intelligence) reasoning over live stadium data, exposed through a
 FastAPI backend and a Next.js dashboard.
 
+# Generative AI Integration (Mandatory)
+This solution fundamentally relies on **Generative AI** powered by the **Google Gemini Pro** model. The `google-generativeai` library is deeply integrated into the backend architecture to drive eight specialized AI agents. The GenAI model dynamically analyzes real-time telemetry (crowd density, weather, IoT sensors) and generates contextual, natural-language operational recommendations and multilingual fan assistance in real-time. Without this core Generative AI capability, the real-time decision support and operational intelligence pipelines would not function.
+
 The dashboard's visual layout (sidebar, top bar, digital twin, insights
 panel, heatmap, operations grid, sustainability donut, transportation
 cards, AI assistant) is built to match the reference design provided.
