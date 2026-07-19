@@ -1,0 +1,17 @@
+line-length = 120
+target-version = "py311"
+
+[lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "C4", "RUF", "ASYNC", "PERF"]
+ignore = ["E501"]
+
+[lint.flake8-bugbear]
+# FastAPI's dependency-injection system relies on `Depends(...)` and
+# `require_role(...)` appearing as argument defaults -- FastAPI inspects
+# these at route-registration time, not call time, so this doesn't have
+# the mutable-default-argument problem B008 exists to catch. This is
+# ruff's own documented configuration for FastAPI projects.
+extend-immutable-calls = ["fastapi.Depends", "fastapi.params.Depends", "app.core.security.require_role"]
+
+[lint.per-file-ignores]
+"app/tests/*" = ["SIM"]

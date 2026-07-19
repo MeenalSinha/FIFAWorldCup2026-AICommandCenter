@@ -1,0 +1,19 @@
+# Node / Next.js
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.env.local
+frontend/playwright-report/
+frontend/test-results/
+frontend/.lighthouseci/
+
+# Python
+backend/__pycache__/
+backend/**/__pycache__/
+backend/.pytest_cache/
+backend/*.egg-info/
+backend/.env
+backend/venv/
+
+# OS
+.DS_Store

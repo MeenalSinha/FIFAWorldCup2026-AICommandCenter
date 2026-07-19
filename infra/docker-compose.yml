@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ../backend
+    ports:
+      - "8080:8080"
+    env_file:
+      - ../backend/.env.example
+    environment:
+      - DEMO_MODE=true
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  frontend:
+    build:
+      context: ../frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://backend:8080
+      - NEXT_PUBLIC_WS_URL=ws://localhost:8080/ws/live
+    depends_on:
+      - backend
